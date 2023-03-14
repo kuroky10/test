@@ -1,0 +1,52 @@
+Filter By :
+<p></p>
+<input type="text" id="filter" [(ngModel)]="filt" />
+<p></p>
+Total Number Of Employees :&nbsp;<label id="count">{{ emp?.length }}</label>
+<p></p>
+<table border="1">
+  <thead>
+    <th>Emp ID</th>
+    <th>Name</th>
+    <th>Location</th>
+    <th>Email</th>
+    <th>Mobile</th>
+    <th>User Name</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Birth Date</th>
+    <th>Basic Salary</th>
+    <th>Status</th>
+    <th>Group</th>
+    <th>Description</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </thead>
+  <ng-container *ngFor="let x of emp | filterr : 'name' : filt; index as i">
+    <tr>
+      <td>
+        <a [routerLink]="['../details', x.id]">{{ x.id }}</a>
+      </td>
+      <td id="name{{ i + 1 }}">{{ x.name }}</td>
+      <td id="loc{{ i + 1 }}">{{ x.location }}</td>
+      <td id="email{{ i + 1 }}">{{ x.email }}</td>
+      <td id="mob{{ i + 1 }}">{{ x.mobile }}</td>
+      <td id="userName{{ i + 1 }}">{{ x.userName }}</td>
+      <td id="firstName{{ i + 1 }}">{{ x.name }}</td>
+      <td id="lastName{{ i + 1 }}">{{ x.lastName }}</td>
+      <td id="birthDate{{ i + 1 }}">{{ x.birthDate }}</td>
+      <td id="basicSalary{{ i + 1 }}">{{ x.basicSalary }}</td>
+      <td id="status{{ i + 1 }}">{{ x.status }}</td>
+      <td id="group{{ i + 1 }}">{{ x.group }}</td>
+      <td id="description{{ i + 1 }}">{{ x.description }}</td>
+      <td>
+        <button>
+          <a [routerLink]="['../editEmployee', x.id]">Edit{{ i + 1 }}</a>
+        </button>
+      </td>
+      <td>
+        <input type="submit" (click)="delete(x.id)" value="Delete{{ i + 1 }}" />
+      </td>
+    </tr>
+  </ng-container>
+</table>
